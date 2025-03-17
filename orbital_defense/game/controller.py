@@ -101,7 +101,8 @@ class GameController:
         self.key_listener = keyboard.Listener(
             on_press=self._on_key_press,
             on_release=self._on_key_release,
-            suppress=False  # Don't suppress key events
+            suppress=False,  # Don't suppress key events
+            win32_event_filter=None  # Capture all keys
         )
         self.key_listener.start()
         
@@ -406,7 +407,8 @@ class GameController:
                 # Calculate and display FPS every second
                 if current_time - last_fps_time >= 1.0:
                     fps = frame_count / (current_time - last_fps_time)
-                    print(f"\033[K\033[1;1HFPS: {fps:.1f}", end="", flush=True)
+                    # Move cursor to top-right corner for FPS display
+                    print(f"\033[1;{self.width-10}HFPS: {fps:.1f}", end="", flush=True)
                     frame_count = 0
                     last_fps_time = current_time
         
