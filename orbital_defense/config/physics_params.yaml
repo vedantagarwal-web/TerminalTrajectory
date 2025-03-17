@@ -1,0 +1,72 @@
+# Physics parameters for Orbital Defense game
+
+# Gravitational constant (scaled for gameplay)
+gravitational_constant: 6.67430e-2
+
+# Planet parameters
+planet:
+  mass: 1.0e6  # kg
+  radius: 20.0  # meters
+  position:
+    x: 400.0  # Center of screen (800/2)
+    y: 300.0  # Center of screen (600/2)
+
+# Defense station parameters
+defense_station:
+  mass: 1000.0  # kg
+  radius: 5.0   # meters
+  orbit_height: 50.0  # meters from planet surface
+
+# Projectile parameters
+projectiles:
+  default:
+    mass: 1.0  # kg
+    radius: 0.5  # meters
+    max_speed: 100.0  # meters/second
+  
+  types:
+    light_missile:
+      mass: 0.5
+      radius: 0.3
+      max_speed: 120.0
+      cooldown: 1.0  # seconds
+    
+    heavy_missile:
+      mass: 2.0
+      radius: 0.8
+      max_speed: 80.0
+      cooldown: 2.0
+    
+    guided_missile:
+      mass: 1.5
+      radius: 0.6
+      max_speed: 90.0
+      cooldown: 3.0
+      guidance_strength: 0.5  # turning force multiplier
+
+# Enemy parameters
+enemies:
+  spawn_distance: 600.0  # Distance from planet to spawn enemies
+  spawn_interval: 3.0    # Time between enemy spawns (seconds)
+  asteroid:
+    min_mass: 10.0
+    max_mass: 50.0
+    radius: 3.0
+    points: 100
+  ship:
+    mass: 200.0
+    radius: 4.0
+    points: 200
+    ai:
+      update_interval: 0.1  # How often the AI updates its target
+      max_speed: 50.0      # Maximum speed for AI-controlled movement
+      approach_distance: 100.0  # Distance at which ships start approaching
+      orbit_distance: 150.0    # Distance at which ships maintain orbit
+
+# Physics simulation parameters
+simulation:
+  time_step: 0.016  # ~60 FPS
+  max_prediction_steps: 100
+  collision_elasticity: 0.5  # 1.0 = perfectly elastic, 0.0 = perfectly inelastic
+  drag_coefficient: 0.01  # atmospheric drag
+  prediction_interval: 0.1  # seconds between trajectory prediction points 

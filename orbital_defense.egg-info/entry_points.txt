@@ -1,0 +1,2 @@
+[console_scripts]
+orbital-defense = orbital_defense.__main__:main
