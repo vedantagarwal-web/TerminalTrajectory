@@ -13,6 +13,13 @@ In Orbital Defense, you command a planetary defense station tasked with protecti
 - Conservation of momentum and energy
 - Multi-body gravitational interactions
 
+The game features:
+- Visual trajectory prediction to help aiming
+- Multiple weapon types with different physics properties
+- Enemy behavior with basic AI for ship navigation
+- Score tracking and increasing difficulty
+- Advanced collision detection system
+
 ## 🔬 Physics Concepts
 
 The game implements several key physics concepts:
@@ -25,12 +32,21 @@ The game implements several key physics concepts:
 ## 🎯 Game Controls
 
 - `[Space]` - Fire selected weapon
-- `[←/→]` - Adjust firing angle
-- `[↑/↓]` - Adjust power/velocity
-- `[1-4]` - Select different weapons
-- `[Q]` - Quit game
-- `[P]` - Pause/View current trajectories
-- `[R]` - Save replay to CSV
+- `[←/→]` or `[A/D]` - Adjust firing angle
+- `[↑/↓]` or `[W/S]` - Adjust power/velocity
+- `[1-3]` - Select different weapons
+- `[Q]` or `[Esc]` - Quit game
+- `[P]` - Pause/Resume game
+- `[X]` indicators show predicted enemy positions
+
+## 🎲 Gameplay Tips
+
+- Watch the trajectory line to see where your shots will go
+- The planet's gravity will curve your shots - use this to your advantage
+- Different weapons have different masses and speeds, affecting how gravity influences them
+- Lead indicators (X marks) show where enemies are likely to be
+- The game gets progressively more difficult, so destroy enemies quickly
+- If an enemy hits the planet, it's game over!
 
 ## 🛠️ Installation
 
@@ -60,7 +76,7 @@ orbital_defense/
 │   ├── gravity.py      # Gravitational calculations
 │   └── motion.py       # Projectile and orbital motion
 ├── game/
-│   ├── entities.py     # Game objects (ships, projectiles)
+│   ├── entities.py     # Game objects (station, enemies, weapons)
 │   ├── renderer.py     # ASCII visualization
 │   └── controller.py   # Game logic and input handling
 ├── config/
@@ -70,12 +86,39 @@ orbital_defense/
     └── test_game.py
 ```
 
+## 🧩 Key Components
+
+### Physics System
+
+The physics system provides realistic gravity simulation through:
+- Vector-based calculations for position, velocity, and acceleration
+- N-body gravitational simulation between all game objects
+- Predictive trajectory calculation for aiming
+
+### Game Controller
+
+The game controller manages:
+- Input handling and key mapping
+- Game state updates and physics simulation steps
+- Collision detection and scoring
+- Enemy spawning and difficulty progression
+
+### ASCII Renderer
+
+The renderer provides a clean terminal visualization with:
+- 2D character buffer for drawing game elements
+- Different character styles for various game objects
+- Trajectory visualization with varying symbols for distance
+- Enemy lead indicators for aiming assistance
+- UI elements for weapon status, score, and controls
+
 ## 🔧 Development Decisions
 
 1. **Vector Operations**: Custom vector class for precise physics calculations
-2. **Time Steps**: Variable time step with fixed upper limit for stable physics
-3. **Collision Detection**: Spatial partitioning for efficient collision checks
-4. **Visualization**: ASCII-based with optional trajectory plotting
+2. **Time Steps**: Fixed time step with sleep control for consistent game speed
+3. **Collision Detection**: Enhanced collision detection with adjustable collision radius
+4. **User Experience**: Visual aids like trajectory prediction and lead indicators
+5. **Keyboard Handling**: Multi-key tracking for smooth, responsive controls
 
 ## 🎓 Educational Value
 
@@ -84,6 +127,16 @@ This game serves as an interactive way to learn about:
 - Numerical integration methods
 - Vector mathematics
 - Conservation laws in physics
+- Game development patterns in Python
+
+## 🚀 Future Enhancements
+
+Potential areas for expansion:
+- More enemy types with varied behaviors
+- Additional weapon types with special physics properties
+- Power-ups and upgrades for the defense station
+- Multiple levels with different gravitational scenarios
+- Graphical mode with PyGame or other visualization libraries
 
 ## 📊 Data Analysis
 
